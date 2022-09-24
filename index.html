@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Random Quote Generator</title>
+    <style>
+      .main {
+        padding: 12px 18px;
+      }
+      .quote,
+      .author {
+        font-size: 36px;
+        font-family: sans-serif;
+        color: white;
+        text-transform: uppercase;
+      }
+      .author {
+        font-size: 24px;
+        margin-left: 70%;
+      }
+      .btn {
+        padding: 12px 12px;
+
+        text-transform: uppercase;
+
+        margin-left: 50%;
+        position: fixed;
+        top: 300px;
+        color: white;
+        border: 1.5px solid white;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <p class="quote"></p>
+      <p class="author"></p>
+      <button class="btn">Show Another quote</button>
+    </div>
+    <script>
+      let quoteCollettions = [
+        {
+          text: "Do not go where the path may lead, go instead where there is no path and leave a trail.",
+          author: "Ralph Waldo Emerson",
+        },
+        {
+          text: "These small shows were decidedly a success. The exhibitions were not too large to be seen easily. It was not an effort, as larger collections of pictures usually are.",
+          author: "Childe Hassam",
+        },
+        {
+          text: "The key to my collections is sensuality.",
+          author: "Sonia Rykiel",
+        },
+      ];
+      function generateRandomColor() {
+        let randomRange = (min, max) =>
+          min + Math.floor(Math.random() * (max - min + 1));
+        return randomRange(0, 255);
+      }
+      console.log(generateRandomColor());
+      function showAnotherQuote() {
+        let randomGenerator = Math.floor(
+          Math.random() * quoteCollettions.length
+        );
+        let paraEle = document.querySelector(".quote");
+        let authEle = document.querySelector(".author");
+        let r = generateRandomColor();
+        let g = generateRandomColor();
+        let b = generateRandomColor();
+        document.body.style.backgroundColor = `rgb(${r},${g},${b})`;
+        paraEle.innerHTML = `"${quoteCollettions[randomGenerator].text}"`;
+        authEle.innerHTML = `-${quoteCollettions[randomGenerator].author}`;
+        document.querySelector(
+          ".btn"
+        ).style.backgroundColor = `rgb(${r},${g},${b})`;
+      }
+      showAnotherQuote();
+      let btn = document.querySelector(".btn");
+      btn.addEventListener("click", showAnotherQuote);
+    </script>
+  </body>
+</html>
